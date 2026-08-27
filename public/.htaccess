@@ -1,0 +1,10 @@
+Options -MultiViews
+
+RewriteEngine On
+
+# Preserve Authorization header
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Route API calls to api.php
+RewriteRule ^api(/.*)?$ api.php [QSA,L]
